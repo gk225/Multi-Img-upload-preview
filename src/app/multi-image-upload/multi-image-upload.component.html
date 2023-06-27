@@ -1,0 +1,30 @@
+<div class="upload">
+  <div class="file">
+    <input type="file" (change)="onFileSelected($event)" #uploadImage multiple accept="image/*" />
+  </div>
+
+  <div class="preview" *ngFor="let selected of listOfFiles; let index = index">
+    <h3>{{ selected }}</h3>
+
+    <img [src]="images[index]" height="150" alt="Preview Image" [hidden]="flag[index]" />
+
+    <div>
+      <button mat-raised-button class="uploadBtn" (click)="upload(index)">
+        Upload
+      </button>
+      <button mat-raised-button class="previewBtn" (click)="previewSelected(index)">
+        Preview
+      </button>
+      <button mat-raised-button class="deleteBtn" (click)="removeSelectedFile(index)">
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <h1 class="headers">Uploaded Images</h1>
+
+  <div class="image-container" *ngFor="let img of imagesUploaded; let index = index">
+    <img [src]="img" height="200" />
+    <button mat-raised-button (click)="deleteImg(index)">Delete</button>
+  </div>
+</div>
